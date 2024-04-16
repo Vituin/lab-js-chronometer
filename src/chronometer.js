@@ -8,8 +8,8 @@ class Chronometer {
   start(printTimeCallback) {
     // ... your code goes here
     this.intervalId = setInterval(() => {
-      if (printTimeCallback) printTimeCallback()
       this.currentTime++
+      printTimeCallback()
     }, 1000)
   }
 
@@ -21,8 +21,7 @@ class Chronometer {
 
   getSeconds() {
     // ... your code goes here
-    const minutes = this.getMinutes()
-    const seconds = this.currentTime - minutes * 60
+    const seconds = this.currentTime - minutes % 60
     return seconds
   }
 
@@ -37,6 +36,8 @@ class Chronometer {
     return charArray.join('')
   }
 
+
+
   stop() {
     // ... your code goes here
     clearInterval(this.intervalId)
@@ -44,7 +45,7 @@ class Chronometer {
 
   reset() {
     // ... your code goes here
-    this.stop()
+
     this.currentTime = 0
   }
 
